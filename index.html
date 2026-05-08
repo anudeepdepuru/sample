@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Celebration 🎂</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      overflow:hidden;
+      background:linear-gradient(135deg,#ff4e91,#6c63ff);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      color:white;
+    }
+
+    h1{
+      margin-bottom:30px;
+      font-size:3rem;
+      animation:glow 2s infinite alternate;
+      text-align:center;
+    }
+
+    .scene{
+      position:relative;
+      width:300px;
+      height:400px;
+    }
+
+    /* Plate */
+    .plate{
+      position:absolute;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      width:260px;
+      height:25px;
+      background:#eee;
+      border-radius:50%;
+      box-shadow:0 5px 10px rgba(0,0,0,0.3);
+    }
+
+    /* Cake layers */
+    .layer{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%) scale(0);
+      border-radius:12px;
+      animation:appear 1s forwards;
+    }
+
+    .layer1{
+      width:220px;
+      height:70px;
+      background:#ffcc80;
+      bottom:45px;
+      animation-delay:0.5s;
+    }
+
+    .layer2{
+      width:180px;
+      height:60px;
+      background:#ffb74d;
+      bottom:115px;
+      animation-delay:1.5s;
+    }
+
+    .layer3{
+      width:140px;
+      height:50px;
+      background:#ffa726;
+      bottom:175px;
+      animation-delay:2.5s;
+    }
+
+    /* Cream */
+    .cream{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%) scaleX(0);
+      background:#fff;
+      border-radius:20px;
+      animation:creamDrop 1s forwards;
+    }
+
+    .cream1{
+      width:220px;
+      height:15px;
+      bottom:105px;
+      animation-delay:1s;
+    }
+
+    .cream2{
+      width:180px;
+      height:15px;
+      bottom:165px;
+      animation-delay:2s;
+    }
+
+    .cream3{
+      width:140px;
+      height:15px;
+      bottom:225px;
+      animation-delay:3s;
+    }
+
+    /* Candle */
+    .candle{
+      position:absolute;
+      width:12px;
+      height:50px;
+      background:#00e5ff;
+      left:50%;
+      bottom:225px;
+      transform:translateX(-50%) scaleY(0);
+      animation:appearY 0.5s forwards;
+      animation-delay:3.5s;
+    }
+
+    /* Flame */
+    .flame{
+      position:absolute;
+      width:18px;
+      height:18px;
+      background:gold;
+      border-radius:50%;
+      left:50%;
+      bottom:270px;
+      transform:translateX(-50%) scale(0);
+      box-shadow:0 0 20px gold;
+      animation:flame 1s infinite alternate, appear 0.5s forwards;
+      animation-delay:4s;
+    }
+
+    /* Message */
+    .message{
+      margin-top:30px;
+      font-size:1.5rem;
+      opacity:0;
+      animation:fadeIn 2s forwards;
+      animation-delay:4.5s;
+      text-align:center;
+    }
+
+    /* Confetti */
+    .confetti{
+      position:absolute;
+      width:10px;
+      height:10px;
+      top:-20px;
+      animation:fall linear forwards;
+    }
+
+    @keyframes appear{
+      to{
+        transform:translateX(-50%) scale(1);
+      }
+    }
+
+    @keyframes appearY{
+      to{
+        transform:translateX(-50%) scaleY(1);
+      }
+    }
+
+    @keyframes creamDrop{
+      to{
+        transform:translateX(-50%) scaleX(1);
+      }
+    }
+
+    @keyframes flame{
+      from{
+        transform:translateX(-50%) scale(1);
+        opacity:0.8;
+      }
+      to{
+        transform:translateX(-50%) scale(1.2);
+        opacity:1;
+      }
+    }
+
+    @keyframes glow{
+      from{
+        text-shadow:0 0 10px white;
+      }
+      to{
+        text-shadow:0 0 25px #fff;
+      }
+    }
+
+    @keyframes fadeIn{
+      to{
+        opacity:1;
+      }
+    }
+
+    @keyframes fall{
+      to{
+        transform:translateY(110vh) rotate(720deg);
+      }
+    }
+
+    button{
+      margin-top:20px;
+      padding:12px 28px;
+      border:none;
+      border-radius:30px;
+      background:white;
+      color:#ff4e91;
+      font-size:1rem;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    button:hover{
+      transform:scale(1.1);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h1>🎉 Happy Birthday Harshini 🎉</h1>
+
+  <div class="scene">
+
+    <div class="plate"></div>
+
+    <div class="layer layer1"></div>
+    <div class="cream cream1"></div>
+
+    <div class="layer layer2"></div>
+    <div class="cream cream2"></div>
+
+    <div class="layer layer3"></div>
+    <div class="cream cream3"></div>
+
+    <div class="candle"></div>
+    <div class="flame"></div>
+
+  </div>
+
+  <div class="message">
+    Wishing You Endless Happiness & Joy 🎂❤️
+  </div>
+
+  <button onclick="startConfetti()">
+    Celebrate 🎊
+  </button>
+
+  <script>
+    function startConfetti(){
+
+      for(let i=0;i<150;i++){
+
+        const confetti=document.createElement("div");
+        confetti.classList.add("confetti");
+
+        confetti.style.left=Math.random()*100+"vw";
+        confetti.style.background=
+          `hsl(${Math.random()*360},100%,50%)`;
+
+        confetti.style.width=
+        confetti.style.height=
+          Math.random()*10+5+"px";
+
+        confetti.style.animationDuration=
+          Math.random()*3+2+"s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(()=>{
+          confetti.remove();
+        },5000);
+      }
+    }
+
+    // Auto celebration after cake builds
+    setTimeout(startConfetti,4500);
+  </script>
+
+</body>
+</html>
